@@ -5,18 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kurukshetra Leaderboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: {
-                        slate: { 950: '#020617' }
-                    },
-                    animation: {
-                        blob: "blob 7s infinite",
-                        pulse: "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
-                    },
+                    colors: { slate: { 950: '#020617' } },
+                    animation: { blob: "blob 7s infinite", pulse: "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite" },
                     keyframes: {
                         blob: {
                             "0%": { transform: "translate(0px, 0px) scale(1)" },
@@ -29,63 +23,21 @@
             },
         }
     </script>
-    
-    <style>
-        .icon { width: 1.25rem; height: 1.25rem; display: inline-block; vertical-align: middle; }
-        .fade-in { opacity: 0; transform: translateY(20px); transition: all 0.7s ease-out; }
-        .fade-in.visible { opacity: 1; transform: translateY(0); }
-    </style>
 </head>
-<body class="min-h-screen bg-slate-950 text-slate-200 font-sans selection:bg-indigo-500 selection:text-white pb-20 overflow-x-hidden">
-
+<body class="min-h-screen bg-slate-950 text-slate-200 font-sans pb-20 overflow-x-hidden">
     <div class="fixed inset-0 z-0 opacity-20 pointer-events-none">
         <div class="absolute top-0 left-0 w-96 h-96 bg-purple-600 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
         <div class="absolute top-0 right-0 w-96 h-96 bg-indigo-600 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob" style="animation-delay: 2s"></div>
-        <div class="absolute bottom-0 left-20 w-96 h-96 bg-blue-600 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob" style="animation-delay: 4s"></div>
     </div>
 
     <div class="relative z-10 container mx-auto px-4 py-8">
-        
         <header class="text-center mb-10 mt-6">
-            <div class="inline-block mb-2 px-3 py-1 rounded-full bg-yellow-500/10 border border-yellow-500/50 text-yellow-400 text-xs font-bold tracking-widest uppercase">
-                Team Csgc Presents
-            </div>
-            <h1 class="text-5xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 via-yellow-400 to-yellow-600 tracking-tighter mb-2 drop-shadow-lg">
-                KURUKSHETRA
-            </h1>
-            <p class="text-xl md:text-2xl text-indigo-300 font-light tracking-wide">
-                Leaderboard & Finalist Reveal
-            </p>
+            <div class="inline-block mb-2 px-3 py-1 rounded-full bg-yellow-500/10 border border-yellow-500/50 text-yellow-400 text-xs font-bold tracking-widest uppercase">Team Csgc Presents</div>
+            <h1 class="text-5xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 via-yellow-400 to-yellow-600 tracking-tighter mb-2 drop-shadow-lg">KURUKSHETRA</h1>
+            <p class="text-xl md:text-2xl text-indigo-300 font-light tracking-wide">Leaderboard & Finalist Reveal</p>
         </header>
 
-        <div class="mb-16 grid grid-cols-1 md:grid-cols-3 gap-4 max-w-5xl mx-auto">
-            <div class="md:col-span-1 bg-gradient-to-br from-indigo-900/50 to-slate-900/50 border border-indigo-500/30 p-4 rounded-xl flex flex-col items-center justify-center text-center shadow-lg shadow-indigo-900/20 backdrop-blur-sm relative overflow-hidden group">
-                <div class="p-2 bg-indigo-500/20 rounded-full mb-2 relative z-10">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-yellow-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m2 4 3 12h14l3-12-6 7-4-3-4 3-6-7z"/><circle cx="12" cy="19" r="2"/></svg>
-                </div>
-                <span class="text-xs text-indigo-300 uppercase tracking-wider font-bold mb-1 relative z-10">Next Phase</span>
-                <span className="text-xl font-bold text-white tracking-wide relative z-10">CHAKRAVYUH</span>
-            </div>
-            
-            <div class="md:col-span-1 bg-slate-900/40 border border-slate-700 p-4 rounded-xl flex flex-col items-center justify-center text-center backdrop-blur-sm hover:bg-slate-800/60 transition-colors">
-                <div class="p-2 bg-yellow-500/10 rounded-full mb-2">
-                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-yellow-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                </div>
-                <span class="text-xs text-slate-400 uppercase tracking-wider font-bold mb-1">Selection Status</span>
-                <span class="text-lg font-bold text-slate-200">10 Elite Squads</span>
-            </div>
-
-            <div class="md:col-span-1 bg-slate-900/40 border border-slate-700 p-4 rounded-xl flex flex-col items-center justify-center text-center backdrop-blur-sm hover:bg-slate-800/60 transition-colors">
-                <div class="p-2 bg-red-500/10 rounded-full mb-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-red-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="14.5 17.5 3 6 3 3 6 3 17.5 14.5"/><line x1="13" y1="19" x2="19" y2="13"/><line x1="16" y1="16" x2="20" y2="20"/><line x1="19" y1="21" x2="21" y2="19"/><polyline points="14.5 6.5 18 3 21 3 21 6 17.5 9.5"/><line x1="5" y1="14" x2="9" y2="18"/><line x1="7" y1="17" x2="4" y2="20"/><line x1="3" y1="19" x2="5" y2="21"/></svg>
-                </div>
-                <span class="text-xs text-slate-400 uppercase tracking-wider font-bold mb-1">Battle Mode</span>
-                <span class="text-lg font-bold text-slate-200">Strategic Warfare</span>
-            </div>
-        </div>
-
-        <div id="podium-container" class="flex flex-col md:flex-row justify-center items-end gap-6 mb-16 max-w-5xl mx-auto mt-12">
-            </div>
+        <div id="podium-container" class="flex flex-col md:flex-row justify-center items-end gap-6 mb-16 max-w-5xl mx-auto mt-12"></div>
 
         <div class="max-w-3xl mx-auto mb-12">
             <div class="flex items-center gap-4 mb-6">
@@ -93,148 +45,55 @@
                 <h3 class="text-indigo-400 font-bold tracking-widest uppercase">Qualified for Finale</h3>
                 <div class="h-px bg-indigo-500/50 flex-grow"></div>
             </div>
-            <div id="finalists-list" class="space-y-3">
-                </div>
+            <div id="finalists-list" class="space-y-3"></div>
         </div>
 
         <div class="max-w-3xl mx-auto mb-12 relative py-8">
-            <div class="absolute inset-0 flex items-center">
-                <div class="w-full border-t-2 border-dashed border-red-500/30"></div>
-            </div>
-            <div class="relative flex justify-center">
-                <span class="bg-slate-950 px-4 text-sm text-red-500/60 font-bold uppercase tracking-widest flex items-center gap-2">
-                    Qualification Cutoff
-                </span>
-            </div>
+            <div class="absolute inset-0 flex items-center"><div class="w-full border-t-2 border-dashed border-red-500/30"></div></div>
+            <div class="relative flex justify-center"><span class="bg-slate-950 px-4 text-sm text-red-500/60 font-bold uppercase tracking-widest">Qualification Cutoff</span></div>
         </div>
-
         <div class="max-w-3xl mx-auto opacity-60 hover:opacity-100 transition-opacity duration-500">
             <h3 class="text-center text-slate-600 font-bold uppercase text-xs tracking-widest mb-4">Good Efforts by</h3>
-            <div id="others-list" class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                </div>
+            <div id="others-list" class="grid grid-cols-1 md:grid-cols-2 gap-3"></div>
         </div>
-
-        <footer class="mt-20 text-center text-slate-600 text-sm">
-            <p>Event Organized by Team Csgc</p>
-            <p class="text-xs mt-1">Decisions made by the jury are final.</p>
-        </footer>
-
     </div>
 
     <script>
-        // DATA
+        // --- DATA ---
         const teamsData = [
-          { name: "Hello World", score: 186 },
-          { name: "MKC", score: 166 },
-          { name: "BM", score: 165 },
-          { name: "Twin Flames", score: 153 },
-          { name: "Manasverse", score: 150 },
-          { name: "The Jack", score: 125 },
-          { name: "T3", score: 122 },
-          { name: "Duo", score: 111 },
-          { name: "Binary Bytes", score: 110 },
-          { name: "3 Idiots", score: 85 },
-          // Cutoff
-          { name: "Innovation X", score: 71 },
-          { name: "Logic Labs", score: 51 },
-          { name: "Tribytes", score: 44 },
-          { name: "ChatGPT", score: 34 },
+          { name: "Hello World", score: 186 }, { name: "MKC", score: 166 }, { name: "BM", score: 165 },
+          { name: "Twin Flames", score: 153 }, { name: "Manasverse", score: 150 }, { name: "The Jack", score: 125 },
+          { name: "T3", score: 122 }, { name: "Duo", score: 111 }, { name: "Binary Bytes", score: 110 },
+          { name: "3 Idiots", score: 85 }, 
+          // Non-Qualifiers
+          { name: "Innovation X", score: 71 }, { name: "Logic Labs", score: 51 }, { name: "Tribytes", score: 44 }, { name: "ChatGPT", score: 34 }
         ];
 
         const finalists = teamsData.slice(0, 10);
         const others = teamsData.slice(10);
 
-        // --- RENDER FUNCTIONS ---
-
-        // 1. Render Podium (Top 3)
+        // --- RENDER LOGIC ---
         const podiumContainer = document.getElementById('podium-container');
-        
-        // Helper for badges
-        function getBadge(rank) {
-            if(rank === 1) return `<div class="p-2 bg-yellow-500/20 rounded-full border border-yellow-500"><svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-yellow-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg></div>`;
-            if(rank === 2) return `<div class="p-2 bg-slate-400/20 rounded-full border border-slate-400"><svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></div>`;
-            if(rank === 3) return `<div class="p-2 bg-amber-700/20 rounded-full border border-amber-700"><svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-amber-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></div>`;
-        }
+        const listContainer = document.getElementById('finalists-list');
+        const othersContainer = document.getElementById('others-list');
 
+        // Helper to generate Podium HTML
         const podiumHTML = `
-            <div class="order-2 md:order-1 w-full md:w-1/3 fade-in" style="transition-delay: 200ms">
-                <div class="bg-gradient-to-b from-slate-800 to-slate-900 border border-slate-600 rounded-2xl p-6 relative shadow-lg shadow-slate-900/50">
-                    <div class="absolute -top-6 left-1/2 transform -translate-x-1/2">${getBadge(2)}</div>
-                    <div class="mt-8 text-center">
-                        <h3 class="text-2xl font-bold text-white mb-2">${finalists[1].name}</h3>
-                        <div class="text-4xl font-black text-slate-400">${finalists[1].score}</div>
-                        <div class="text-xs uppercase tracking-widest text-slate-500 mt-2">Points</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="order-1 md:order-2 w-full md:w-1/3 fade-in">
-                <div class="bg-gradient-to-b from-indigo-900 to-slate-900 border-2 border-yellow-500 rounded-2xl p-8 relative shadow-2xl shadow-yellow-900/20 transform md:-translate-y-8">
-                    <div class="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-slate-950 rounded-full p-2 border-2 border-yellow-500">${getBadge(1)}</div>
-                    <div class="mt-8 text-center">
-                         <div class="flex justify-center mb-2"><svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-yellow-400 animate-pulse" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m2 4 3 12h14l3-12-6 7-4-3-4 3-6-7z"/><circle cx="12" cy="19" r="2"/></svg></div>
-                        <h3 class="text-3xl font-black text-white mb-2">${finalists[0].name}</h3>
-                        <div class="text-5xl font-black text-yellow-400">${finalists[0].score}</div>
-                        <div class="text-xs uppercase tracking-widest text-yellow-600 mt-2 font-bold">Champion (Current)</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="order-3 md:order-3 w-full md:w-1/3 fade-in" style="transition-delay: 300ms">
-                <div class="bg-gradient-to-b from-slate-800 to-slate-900 border border-amber-800 rounded-2xl p-6 relative shadow-lg shadow-amber-900/20">
-                    <div class="absolute -top-6 left-1/2 transform -translate-x-1/2">${getBadge(3)}</div>
-                    <div class="mt-8 text-center">
-                        <h3 class="text-2xl font-bold text-white mb-2">${finalists[2].name}</h3>
-                        <div class="text-4xl font-black text-amber-600">${finalists[2].score}</div>
-                        <div class="text-xs uppercase tracking-widest text-slate-500 mt-2">Points</div>
-                    </div>
-                </div>
-            </div>
+            <div class="order-2 md:order-1 w-full md:w-1/3"><div class="bg-slate-900 border border-slate-600 rounded-2xl p-6 relative text-center"><div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-slate-800 p-2 rounded-full border border-slate-400 text-slate-300 font-bold">#2</div><h3 class="text-2xl font-bold text-white mt-4">${finalists[1].name}</h3><div class="text-4xl font-black text-slate-400">${finalists[1].score}</div></div></div>
+            <div class="order-1 md:order-2 w-full md:w-1/3"><div class="bg-indigo-900 border-2 border-yellow-500 rounded-2xl p-8 relative text-center md:-translate-y-8 shadow-2xl"><div class="absolute -top-6 left-1/2 -translate-x-1/2 bg-slate-950 p-3 rounded-full border-2 border-yellow-500 text-yellow-400 font-bold text-xl">👑</div><h3 class="text-3xl font-black text-white mt-4">${finalists[0].name}</h3><div class="text-5xl font-black text-yellow-400">${finalists[0].score}</div></div></div>
+            <div class="order-3 md:order-3 w-full md:w-1/3"><div class="bg-slate-900 border border-amber-800 rounded-2xl p-6 relative text-center"><div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-slate-800 p-2 rounded-full border border-amber-700 text-amber-600 font-bold">#3</div><h3 class="text-2xl font-bold text-white mt-4">${finalists[2].name}</h3><div class="text-4xl font-black text-amber-600">${finalists[2].score}</div></div></div>
         `;
         podiumContainer.innerHTML = podiumHTML;
 
-        // 2. Render Finalists List (4-10)
-        const listContainer = document.getElementById('finalists-list');
+        // Generate List
         finalists.slice(3).forEach((team, idx) => {
-            const realRank = idx + 4;
-            const el = document.createElement('div');
-            el.className = `bg-slate-800/40 border border-slate-700 hover:border-indigo-500/50 rounded-xl p-4 flex items-center justify-between transition-all duration-300 hover:bg-slate-800 hover:translate-x-2 fade-in`;
-            el.style.transitionDelay = `${(idx + 3) * 100}ms`;
-            
-            el.innerHTML = `
-                <div class="flex items-center gap-4">
-                    <div class="w-8 h-8 flex items-center justify-center font-bold text-slate-500 bg-slate-900 rounded-lg">#${realRank}</div>
-                    <span class="text-lg font-semibold text-white">${team.name}</span>
-                </div>
-                <div class="flex items-center gap-2">
-                     <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-green-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
-                    <span class="text-xl font-bold text-indigo-300">${team.score}</span>
-                </div>
-            `;
-            listContainer.appendChild(el);
+            listContainer.innerHTML += `<div class="bg-slate-800/40 border border-slate-700 rounded-xl p-4 flex items-center justify-between"><div class="flex items-center gap-4"><div class="w-8 h-8 flex items-center justify-center font-bold text-slate-500 bg-slate-900 rounded-lg">#${idx + 4}</div><span class="text-lg font-semibold text-white">${team.name}</span></div><span class="text-xl font-bold text-indigo-300">${team.score}</span></div>`;
         });
 
-        // 3. Render Others
-        const othersContainer = document.getElementById('others-list');
+        // Generate Others
         others.forEach((team, idx) => {
-             const el = document.createElement('div');
-             el.className = "bg-slate-900/30 border border-slate-800 rounded-lg p-3 flex items-center justify-between";
-             el.innerHTML = `
-                 <div class="flex items-center gap-3">
-                     <div class="text-xs font-mono text-slate-600">#${idx + 11}</div>
-                     <span class="text-slate-400">${team.name}</span>
-                 </div>
-                 <span class="font-mono text-slate-500">${team.score}</span>
-             `;
-             othersContainer.appendChild(el);
+             othersContainer.innerHTML += `<div class="bg-slate-900/30 border border-slate-800 rounded-lg p-3 flex items-center justify-between"><div class="flex items-center gap-3"><div class="text-xs font-mono text-slate-600">#${idx + 11}</div><span class="text-slate-400">${team.name}</span></div><span class="font-mono text-slate-500">${team.score}</span></div>`;
         });
-
-        // 4. Trigger Animations on Load
-        setTimeout(() => {
-            const fades = document.querySelectorAll('.fade-in');
-            fades.forEach(el => el.classList.add('visible'));
-        }, 100);
-
     </script>
 </body>
 </html>
