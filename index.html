@@ -1,218 +1,259 @@
-import React, { useState, useEffect } from 'react';
-import { Trophy, Medal, MapPin, Calendar, Clock, Crown, Shield, AlertCircle, ChevronDown, Award, Zap, Target, Swords } from 'lucide-react';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kurukshetra Leaderboard Finalists</title>
+<style>
+  :root {
+    --primary-color: #ffd700;
+    --secondary-color: #1a2a6c;
+    --accent-color: #b21f1f;
+    --text-color: #ffffff;
+    --card-bg: rgba(255, 255, 255, 0.1);
+    --card-hover: rgba(255, 215, 0, 0.15);
+  }
 
-const teamsData = [
-  { name: "Hello World", score: 186 },
-  { name: "MKC", score: 166 },
-  { name: "BM", score: 165 },
-  { name: "Twin Flames", score: 153 },
-  { name: "Manasverse", score: 150 },
-  { name: "The Jack", score: 125 },
-  { name: "T3", score: 122 },
-  { name: "Duo", score: 111 },
-  { name: "Binary Bytes", score: 110 },
-  { name: "3 Idiots", score: 85 },
-  // Cutoff
-  { name: "Innovation X", score: 71 },
-  { name: "Logic Labs", score: 51 },
-  { name: "Tribytes", score: 44 },
-  { name: "ChatGPT", score: 34 },
-];
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+    /* Subtle background pattern overlay */
+    background-image: linear-gradient(135deg, var(--secondary-color) 0%, var(--accent-color) 100%), url('https://www.transparenttextures.com/patterns/cubes.png');
+    background-blend-mode: overlay;
+  }
 
-const RankBadge = ({ rank }) => {
-  if (rank === 1) return <div className="p-2 bg-yellow-500/20 rounded-full border border-yellow-500"><Trophy className="w-6 h-6 text-yellow-400" /></div>;
-  if (rank === 2) return <div className="p-2 bg-slate-400/20 rounded-full border border-slate-400"><Medal className="w-6 h-6 text-slate-300" /></div>;
-  if (rank === 3) return <div className="p-2 bg-amber-700/20 rounded-full border border-amber-700"><Medal className="w-6 h-6 text-amber-600" /></div>;
-  return <div className="w-10 h-10 flex items-center justify-center font-bold text-slate-500 border border-slate-700 rounded-full bg-slate-800/50">#{rank}</div>;
-};
+  .container {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 40px;
+    border-radius: 25px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+    text-align: center;
+    max-width: 1000px;
+    width: 100%;
+    border: 3px solid rgba(255, 215, 0, 0.4);
+    backdrop-filter: blur(10px);
+  }
 
-const EventDetails = () => (
-  <div className="mb-16 grid grid-cols-1 md:grid-cols-3 gap-4 max-w-5xl mx-auto">
-     {/* Next Phase Card */}
-     <div className="md:col-span-1 bg-gradient-to-br from-indigo-900/50 to-slate-900/50 border border-indigo-500/30 p-4 rounded-xl flex flex-col items-center justify-center text-center shadow-lg shadow-indigo-900/20 backdrop-blur-sm relative overflow-hidden group">
-        <div className="absolute inset-0 bg-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-        <div className="p-2 bg-indigo-500/20 rounded-full mb-2 relative z-10">
-            <Crown className="w-5 h-5 text-yellow-400" />
-        </div>
-        <span className="text-xs text-indigo-300 uppercase tracking-wider font-bold mb-1 relative z-10">Next Phase</span>
-        <span className="text-xl font-bold text-white tracking-wide relative z-10">CHAKRAVYUH</span>
-     </div>
-     
-     {/* Stats/Finalists Card */}
-     <div className="md:col-span-1 bg-slate-900/40 border border-slate-700 p-4 rounded-xl flex flex-col items-center justify-center text-center backdrop-blur-sm hover:bg-slate-800/60 transition-colors hover:border-yellow-500/30">
-        <div className="p-2 bg-yellow-500/10 rounded-full mb-2">
-            <Shield className="w-5 h-5 text-yellow-500 opacity-90" />
-        </div>
-        <span className="text-xs text-slate-400 uppercase tracking-wider font-bold mb-1">Selection Status</span>
-        <span className="text-lg font-bold text-slate-200">10 Elite Squads</span>
-     </div>
+  h1 {
+    font-size: 3.5em;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: var(--primary-color);
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.6), 3px 3px 5px rgba(0,0,0,0.8);
+    font-weight: 800;
+  }
 
-     {/* Theme/Mode Card */}
-     <div className="md:col-span-1 bg-slate-900/40 border border-slate-700 p-4 rounded-xl flex flex-col items-center justify-center text-center backdrop-blur-sm hover:bg-slate-800/60 transition-colors hover:border-red-500/30">
-        <div className="p-2 bg-red-500/10 rounded-full mb-2">
-            <Swords className="w-5 h-5 text-red-400 opacity-90" />
-        </div>
-        <span className="text-xs text-slate-400 uppercase tracking-wider font-bold mb-1">Battle Mode</span>
-        <span className="text-lg font-bold text-slate-200">Strategic Warfare</span>
-     </div>
-  </div>
-);
+  h2 {
+    font-size: 1.8em;
+    margin-top: 0;
+    margin-bottom: 40px;
+    color: #e0e0e0;
+    font-weight: 400;
+    letter-spacing: 1px;
+  }
 
-const App = () => {
-  const [loaded, setLoaded] = useState(false);
+  .leaderboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 25px;
+    margin-bottom: 40px;
+    justify-content: center;
+  }
 
-  useEffect(() => {
-    setLoaded(true);
-  }, []);
+  .team-card {
+    background: var(--card-bg);
+    border-radius: 15px;
+    padding: 25px 15px;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 140px;
+  }
 
-  const finalists = teamsData.slice(0, 10);
-  const others = teamsData.slice(10);
+  .team-card:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    background: var(--card-hover);
+    border-color: var(--primary-color);
+  }
 
-  return (
-    <div className="min-h-screen bg-slate-950 text-slate-200 font-sans selection:bg-indigo-500 selection:text-white pb-20 overflow-x-hidden">
-      {/* Background Ambience */}
-      <div className="fixed inset-0 z-0 opacity-20 pointer-events-none">
-         <div className="absolute top-0 left-0 w-96 h-96 bg-purple-600 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
-         <div className="absolute top-0 right-0 w-96 h-96 bg-indigo-600 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
-         <div className="absolute bottom-0 left-20 w-96 h-96 bg-blue-600 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
-      </div>
+  .team-card.top-rank {
+     border-color: rgba(255, 215, 0, 0.5);
+     background: linear-gradient(to bottom right, rgba(255,215,0,0.1), rgba(0,0,0,0.3));
+  }
 
-      <div className="relative z-10 container mx-auto px-4 py-8">
-        
-        {/* Header */}
-        <header className="text-center mb-10 mt-6">
-          <div className="inline-block mb-2 px-3 py-1 rounded-full bg-yellow-500/10 border border-yellow-500/50 text-yellow-400 text-xs font-bold tracking-widest uppercase">
-            Team Csgc Presents
-          </div>
-          <h1 className="text-5xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 via-yellow-400 to-yellow-600 tracking-tighter mb-2 drop-shadow-lg">
-            KURUKSHETRA
-          </h1>
-          <p className="text-xl md:text-2xl text-indigo-300 font-light tracking-wide">
-            Leaderboard & Finalist Reveal
-          </p>
-        </header>
+  .team-card.placeholder {
+      border: 2px dashed rgba(255, 255, 255, 0.3);
+      background: rgba(0,0,0,0.3);
+  }
+  .team-card.placeholder .team-name,
+  .team-card.placeholder .score {
+      color: rgba(255,255,255,0.5);
+      font-style: italic;
+  }
+  
+  [contenteditable="true"]:hover {
+    background: rgba(255,255,255,0.1);
+    cursor: text;
+    border-radius: 5px;
+    outline: none;
+  }
+  [contenteditable="true"]:focus {
+      background: rgba(255,255,255,0.2);
+      color: white;
+      font-style: normal;
+      outline: none;
+  }
 
-        <EventDetails />
+  .rank-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: linear-gradient(45deg, var(--primary-color), #ffecb3);
+    color: #000;
+    font-weight: 900;
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+    font-size: 1.1em;
+  }
 
-        {/* Top 3 Podium */}
-        <div className="flex flex-col md:flex-row justify-center items-end gap-6 mb-16 max-w-5xl mx-auto mt-12">
-          {/* 2nd Place */}
-          <div className={`order-2 md:order-1 w-full md:w-1/3 transition-all duration-700 delay-200 transform ${loaded ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`}>
-            <div className="bg-gradient-to-b from-slate-800 to-slate-900 border border-slate-600 rounded-2xl p-6 relative shadow-lg shadow-slate-900/50">
-              <div className="absolute -top-6 left-1/2 transform -translate-x-1/2">
-                <RankBadge rank={2} />
-              </div>
-              <div className="mt-8 text-center">
-                <h3 className="text-2xl font-bold text-white mb-2">{finalists[1].name}</h3>
-                <div className="text-4xl font-black text-slate-400">{finalists[1].score}</div>
-                <div className="text-xs uppercase tracking-widest text-slate-500 mt-2">Points</div>
-              </div>
-            </div>
-          </div>
+  .team-name {
+    font-size: 1.4em;
+    font-weight: 700;
+    margin: 25px 0 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-transform: capitalize;
+    letter-spacing: 0.5px;
+  }
 
-          {/* 1st Place */}
-          <div className={`order-1 md:order-2 w-full md:w-1/3 transition-all duration-700 transform ${loaded ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`}>
-            <div className="bg-gradient-to-b from-indigo-900 to-slate-900 border-2 border-yellow-500 rounded-2xl p-8 relative shadow-2xl shadow-yellow-900/20 transform md:-translate-y-8">
-              <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-slate-950 rounded-full p-2 border-2 border-yellow-500">
-                <RankBadge rank={1} />
-              </div>
-              <div className="mt-8 text-center">
-                <div className="flex justify-center mb-2">
-                   <Crown className="text-yellow-400 animate-pulse" />
-                </div>
-                <h3 className="text-3xl font-black text-white mb-2">{finalists[0].name}</h3>
-                <div className="text-5xl font-black text-yellow-400">{finalists[0].score}</div>
-                <div className="text-xs uppercase tracking-widest text-yellow-600 mt-2 font-bold">Champion (Current)</div>
-              </div>
-            </div>
-          </div>
+  .score {
+    font-size: 2.2em;
+    font-weight: 800;
+    color: var(--primary-color);
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+  }
 
-          {/* 3rd Place */}
-          <div className={`order-3 md:order-3 w-full md:w-1/3 transition-all duration-700 delay-300 transform ${loaded ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`}>
-            <div className="bg-gradient-to-b from-slate-800 to-slate-900 border border-amber-800 rounded-2xl p-6 relative shadow-lg shadow-amber-900/20">
-              <div className="absolute -top-6 left-1/2 transform -translate-x-1/2">
-                <RankBadge rank={3} />
-              </div>
-              <div className="mt-8 text-center">
-                <h3 className="text-2xl font-bold text-white mb-2">{finalists[2].name}</h3>
-                <div className="text-4xl font-black text-amber-600">{finalists[2].score}</div>
-                <div className="text-xs uppercase tracking-widest text-slate-500 mt-2">Points</div>
-              </div>
-            </div>
-          </div>
-        </div>
+  .footer-message {
+    margin-top: 30px;
+    font-size: 1.3em;
+    color: #e0e0e0;
+  }
+  .highlight {
+      color: var(--primary-color);
+      font-weight: bold;
+  }
 
-        {/* The Rest of the Finalists */}
-        <div className="max-w-3xl mx-auto mb-12">
-          <div className="flex items-center gap-4 mb-6">
-            <div className="h-px bg-indigo-500/50 flex-grow"></div>
-            <h3 className="text-indigo-400 font-bold tracking-widest uppercase">Qualified for Finale</h3>
-            <div className="h-px bg-indigo-500/50 flex-grow"></div>
-          </div>
+  .swords-icon {
+      font-size: 3em;
+      color: var(--primary-color);
+      opacity: 0.8;
+      margin-bottom: 20px;
+      display: inline-block;
+      position: relative;
+      width: 50px;
+      height: 50px;
+      background:
+        linear-gradient(45deg, transparent 45%, var(--primary-color) 45%, var(--primary-color) 55%, transparent 55%),
+        linear-gradient(-45deg, transparent 45%, var(--primary-color) 45%, var(--primary-color) 55%, transparent 55%);
+  }
+</style>
+</head>
+<body>
 
-          <div className="space-y-3">
-            {finalists.slice(3).map((team, idx) => (
-              <div 
-                key={team.name}
-                className={`bg-slate-800/40 border border-slate-700 hover:border-indigo-500/50 rounded-xl p-4 flex items-center justify-between transition-all duration-300 hover:bg-slate-800 hover:translate-x-2 ${loaded ? 'opacity-100' : 'opacity-0'}`}
-                style={{ transitionDelay: `${(idx + 3) * 100}ms` }}
-              >
-                <div className="flex items-center gap-4">
-                  <div className="w-8 h-8 flex items-center justify-center font-bold text-slate-500 bg-slate-900 rounded-lg">
-                    {idx + 4}
-                  </div>
-                  <span className="text-lg font-semibold text-white">{team.name}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                   <Award className="w-4 h-4 text-green-500" />
-                   <span className="text-xl font-bold text-indigo-300">{team.score}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+<div class="container">
+  <div class="swords-icon"></div>
 
-        {/* The Cutoff Line */}
-        <div className="max-w-3xl mx-auto mb-12 relative py-8">
-            <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t-2 border-dashed border-red-500/30"></div>
-            </div>
-            <div className="relative flex justify-center">
-                <span className="bg-slate-950 px-4 text-sm text-red-500/60 font-bold uppercase tracking-widest flex items-center gap-2">
-                    <AlertCircle className="w-4 h-4" /> Qualification Cutoff
-                </span>
-            </div>
-        </div>
+  <h1>Kurukshetra</h1>
+  <h2>Grand Finale Qualifiers Leaderboard</h2>
 
-        {/* Non-Qualifiers */}
-        <div className="max-w-3xl mx-auto opacity-60 hover:opacity-100 transition-opacity duration-500">
-           <h3 className="text-center text-slate-600 font-bold uppercase text-xs tracking-widest mb-4">Good Efforts by</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            {others.map((team, idx) => (
-              <div 
-                key={team.name}
-                className="bg-slate-900/30 border border-slate-800 rounded-lg p-3 flex items-center justify-between"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="text-xs font-mono text-slate-600">
-                    #{idx + 11}
-                  </div>
-                  <span className="text-slate-400">{team.name}</span>
-                </div>
-                <span className="font-mono text-slate-500">{team.score}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <footer className="mt-20 text-center text-slate-600 text-sm">
-          <p>Event Organized by Team Csgc</p>
-          <p className="text-xs mt-1">Decisions made by the jury are final.</p>
-        </footer>
-
-      </div>
+  <div class="leaderboard-grid">
+    <div class="team-card top-rank">
+      <div class="rank-badge">1</div>
+      <div class="team-name">Hello World</div>
+      <div class="score">186</div>
     </div>
-  );
-};
+    <div class="team-card top-rank">
+      <div class="rank-badge">2</div>
+      <div class="team-name">MKC</div>
+      <div class="score">166</div>
+    </div>
+    <div class="team-card top-rank">
+      <div class="rank-badge">3</div>
+      <div class="team-name">BM</div>
+      <div class="score">165</div>
+    </div>
+    <div class="team-card">
+      <div class="rank-badge">4</div>
+      <div class="team-name">Twin Flames</div>
+      <div class="score">153</div>
+    </div>
+    <div class="team-card">
+      <div class="rank-badge">5</div>
+      <div class="team-name">Manasverse</div>
+      <div class="score">150</div>
+    </div>
+    <div class="team-card">
+      <div class="rank-badge">6</div>
+      <div class="team-name">The Jack</div>
+      <div class="score">125</div>
+    </div>
+    <div class="team-card">
+      <div class="rank-badge">7</div>
+      <div class="team-name">T3</div>
+      <div class="score">122</div>
+    </div>
+    <div class="team-card">
+      <div class="rank-badge">8</div>
+      <div class="team-name">Duo</div>
+      <div class="score">111</div>
+    </div>
+    <div class="team-card">
+      <div class="rank-badge">9</div>
+      <div class="team-name">Binary Bytes</div>
+      <div class="score">110</div>
+    </div>
+    <div class="team-card">
+      <div class="rank-badge">10</div>
+      <div class="team-name">3 Idiots</div>
+      <div class="score">85</div>
+    </div>
 
-export default App;
+    <div class="team-card placeholder">
+      <div class="rank-badge" style="background: #666; color: #ccc;">11</div>
+      <div class="team-name" contenteditable="true">[Click to Name]</div>
+      <div class="score" contenteditable="true">--</div>
+    </div>
+     <div class="team-card placeholder">
+      <div class="rank-badge" style="background: #666; color: #ccc;">12</div>
+      <div class="team-name" contenteditable="true">[Click to Name]</div>
+      <div class="score" contenteditable="true">--</div>
+    </div>
+
+  </div>
+
+  <div class="footer-message">
+    Prepare for the ultimate showdown in the <span class="highlight">Chakravyuh</span> round!
+  </div>
+</div>
+
+</body>
+</html>
